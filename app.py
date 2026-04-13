@@ -71,10 +71,10 @@ def detect_urgent_language(text):
         "unauthorized activity",
         "account suspended",
         "action required",
-        "your account will be closed"
-        "win"
-        "prize"
-        "giveaway"
+        "your account will be closed",
+        "win",
+        "prize",
+        "giveaway",
     ]
 
     for phrase in phrases:
@@ -145,11 +145,6 @@ def index():
 # -----------------------------------
 # Gmail / API Route
 # -----------------------------------
-
-@app.route("/")
-def home():
-    return "Phishing Detector API Running"
-
 
 @app.route("/analyze", methods=["POST"])
 def analyze_api():

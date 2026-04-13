@@ -64,8 +64,6 @@ def detect_urgent_language(text):
     indicators = []
 
     phrases = [
-
-        # Urgency / fear tactics
         "urgent",
         "verify now",
         "immediately",
@@ -73,60 +71,16 @@ def detect_urgent_language(text):
         "unauthorized activity",
         "account suspended",
         "action required",
-        "your account will be closed",
-        "limited time",
-        "respond now",
-        "security alert",
-        "suspended account",
-        "payment failed",
-        "confirm identity",
-
-        # Prize / giveaway phishing
-        "congratulations",
-        "you have won",
-        "winner",
-        "claim your prize",
-        "claim now",
-        "free gift",
-        "gift card",
-        "selected as winner",
-        "exclusive reward",
-        "cash prize",
-        "jackpot",
-        "lottery winner",
-        "sweepstakes",
-        "you are eligible",
-        "reward waiting",
-        "instant reward",
-        "special promotion",
-        "free vacation",
-        "bonus reward",
-        "claim your reward",
-        "you've been selected",
-        "free iphone",
-        "free ipad",
-        "free money",
-        "guaranteed winner",
-        "prize awaiting",
-
-        # Financial bait
-        "tax refund",
-        "refund available",
-        "stimulus payment",
-        "bank transfer ready",
-        "unclaimed funds",
-
-        # Credential theft bait
-        "login required",
-        "reset password",
-        "verify account",
-        "update payment information"
+        "your account will be closed"
+        "win"
+        "prize"
+        "giveaway"
     ]
 
     for phrase in phrases:
         if phrase.lower() in text.lower():
             indicators.append(
-                f"Suspicious phrase detected: {phrase}"
+                f"Urgent language detected: {phrase}"
             )
 
     return indicators
@@ -191,6 +145,11 @@ def index():
 # -----------------------------------
 # Gmail / API Route
 # -----------------------------------
+
+@app.route("/")
+def home():
+    return "Phishing Detector API Running"
+
 
 @app.route("/analyze", methods=["POST"])
 def analyze_api():

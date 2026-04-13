@@ -147,7 +147,7 @@ def index():
 # -----------------------------------
 
 @app.route("/")
-def index():
+def home():
     return "Phishing Detector API Running"
 
 

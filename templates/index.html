@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Phishing Detector</title>
+
+    <style>
+
+        body{
+            font-family: Arial;
+            background:#f4f6f8;
+            margin:40px;
+        }
+
+        .box{
+            background:white;
+            padding:30px;
+            border-radius:10px;
+            box-shadow:0 0 10px rgba(0,0,0,.1);
+            max-width:900px;
+            margin:auto;
+        }
+
+        textarea{
+            width:100%;
+            height:250px;
+            padding:12px;
+            font-size:16px;
+        }
+
+        button{
+            background:#d93025;
+            color:white;
+            border:none;
+            padding:12px 20px;
+            font-size:16px;
+            cursor:pointer;
+            margin-top:10px;
+        }
+
+        button:hover{
+            background:#b02018;
+        }
+
+        .safe{
+            color:green;
+            font-weight:bold;
+        }
+
+        .danger{
+            color:red;
+            font-weight:bold;
+        }
+
+        .medium{
+            color:orange;
+            font-weight:bold;
+        }
+
+        ul{
+            line-height:1.8;
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+<div class="box">
+
+<h1>📧 Phishing Email Scanner</h1>
+
+<form method="POST">
+
+<textarea
+name="email_text"
+placeholder="Paste email content here...">{{ text }}</textarea>
+
+<br>
+
+<button type="submit">
+Scan Email
+</button>
+
+</form>
+
+<hr>
+
+{% if status %}
+
+<h2>{{ status }}</h2>
+
+{% endif %}
+
+
+{% if risk == "Low" %}
+<p class="safe">Risk Level: Low</p>
+{% elif risk == "Medium" %}
+<p class="medium">Risk Level: Medium</p>
+{% elif risk == "High" %}
+<p class="danger">Risk Level: High</p>
+{% endif %}
+
+
+{% if results %}
+
+<h3 class="danger">
+⚠️ Indicators Found:
+</h3>
+
+<ul>
+{% for item in results %}
+<li>{{ item }}</li>
+{% endfor %}
+</ul>
+
+{% elif text %}
+
+<p class="safe">
+✔️ No phishing indicators detected.
+</p>
+
+{% endif %}
+
+</div>
+
+</body>
+</html>
